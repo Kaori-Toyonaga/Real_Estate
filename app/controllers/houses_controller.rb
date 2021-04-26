@@ -12,22 +12,21 @@ class HousesController < ApplicationController
   def create
     # House.create(house_params)
     @house = House.new(house_params)
-    # if params[:back]
-      # render :new
-  #   else
+    if params[:back]
+      render :new
+    else
       if @house.save
         redirect_to houses_path, notice: "物件を登録しました。"
       else
         render :new
       end
-  #   end
+    end
   end
 
   def show
   end
 
   def edit
-    # redirect_to houses_path
   end
 
   def update
@@ -42,11 +41,6 @@ class HousesController < ApplicationController
     @house.destroy
     redirect_to houses_path, notice:"物件情報を削除しました。"
   end
-
-  # def confirm
-  #   @house = current_user.houses.build(house_params)
-  #   render :new if @house.invalid?
-  # end
 
   private
   def house_params
