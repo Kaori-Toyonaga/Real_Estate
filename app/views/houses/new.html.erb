@@ -1,6 +1,18 @@
 <h1>物件登録</h1>
 
 <%= form_with(model: @house, local: true) do |form| %>
+
+<% if @house.errors.any? %>
+  <div id="error_explanation">
+    <h2>登録ミスが<%= @house.errors.count %>件あります。</h2>
+    <ul>
+    <% @house.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div>
   <p><%= form.label :物件名 %></p>
   <p><%= form.text_field :title %></p>

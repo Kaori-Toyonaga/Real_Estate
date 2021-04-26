@@ -10,11 +10,11 @@
   <tr>
   <% @houses.each do |house| %>
     <td><%= house.title %></td>
-    <td><%= house.rent_fee %></td>
+    <td><%= house.rent_fee %>円</td>
     <td><%= house.address %></td>
     <td><%= house.age %>年</td>
     <td><%= house.remark %></td>
-    <td>詳細</td>
+    <td><%= link_to '詳細', house_path(house.id) %></td>
     <td>編集</td>
     <td>削除</td>
 　</tr>

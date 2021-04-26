@@ -10,20 +10,22 @@ class HousesController < ApplicationController
   end
 
   def create
-    House.create(house_params)
+    # House.create(house_params)
+    @house = House.new(house_params)
     # if params[:back]
-      render :new
+      # render :new
   #   else
-  #     if @house.save
-  #       redirect_to houses_path
-  #     else
-  #       render :new
-  #     end
+      if @house.save
+        redirect_to houses_path, notice: "物件を登録しました。"
+      else
+        render :new
+      end
   #   end
   end
   #
-  # def show
-  # end
+  def show
+    @house = House.find(params[:id])
+  end
   #
   # def edit
   #   redirect_to houses_path
