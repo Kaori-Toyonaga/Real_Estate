@@ -1,4 +1,5 @@
 <h1>物件一覧</h1>
+<p><%= notice %></p>
 <table>
   <tr>
     <th>物件名</th>
@@ -15,8 +16,8 @@
     <td><%= house.age %>年</td>
     <td><%= house.remark %></td>
     <td><%= link_to '詳細', house_path(house.id) %></td>
-    <td><%= link_to '編集', edit_house_path(house.id) %></td>
-    <td>削除</td>
+    <td><%= link_to '編集', edit_house_path(house.id), data: { confirm: '更新しますか？' } %></td>
+    <td><%= link_to '削除', house_path(house.id), method: :delete,data: { confirm: '削除しますか？' } %></td>
 　</tr>
  <% end %>
 </table>

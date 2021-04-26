@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  # before_action :set_contact, only: %i[ show edit update destroy ]
+  before_action :set_house, only: [:show, :edit, :update, :destroy ]
 
   def index
     @houses = House.all
@@ -24,16 +24,13 @@ class HousesController < ApplicationController
   end
 
   def show
-    @house = House.find(params[:id])
   end
 
   def edit
-    @house = House.find(params[:id])
     # redirect_to houses_path
   end
 
   def update
-    @house = House.find(params[:id])
     if @house.update(house_params)
       redirect_to houses_path, notice: "物件情報を更新しました。"
     else
@@ -41,11 +38,11 @@ class HousesController < ApplicationController
     end
   end
 
-  # def destroy
-  #   @house.destroy
-  #   redirect_to houses_path
-  # end
-  #
+  def destroy
+    @house.destroy
+    redirect_to houses_path, notice:"物件情報を削除しました。"
+  end
+
   # def confirm
   #   @house = current_user.houses.build(house_params)
   #   render :new if @house.invalid?
@@ -56,8 +53,8 @@ class HousesController < ApplicationController
     params.require(:house).permit(:title, :rent_fee, :address, :age, :remark)
   end
 
-  # def set_house
-  #   @house = House.find(params[:id])
-  # end
-  #
+  def set_house
+    @house = House.find(params[:id])
+  end
+
 end
