@@ -15,7 +15,7 @@
     <td><%= house.age %>年</td>
     <td><%= house.remark %></td>
     <td><%= link_to '詳細', house_path(house.id) %></td>
-    <td>編集</td>
+    <td><%= link_to '編集', edit_house_path(house.id) %></td>
     <td>削除</td>
 　</tr>
  <% end %>

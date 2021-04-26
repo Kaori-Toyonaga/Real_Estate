@@ -22,23 +22,25 @@ class HousesController < ApplicationController
       end
   #   end
   end
-  #
+
   def show
     @house = House.find(params[:id])
   end
-  #
-  # def edit
-  #   redirect_to houses_path
-  # end
-  #
-  # def update
-  #   if @house.update(house_params)
-  #     redirect_to houses_path
-  #   else
-  #     render :edit
-  #   end
-  # end
-  #
+
+  def edit
+    @house = House.find(params[:id])
+    # redirect_to houses_path
+  end
+
+  def update
+    @house = House.find(params[:id])
+    if @house.update(house_params)
+      redirect_to houses_path, notice: "物件情報を更新しました。"
+    else
+      render :edit
+    end
+  end
+
   # def destroy
   #   @house.destroy
   #   redirect_to houses_path
