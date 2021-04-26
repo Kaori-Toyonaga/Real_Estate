@@ -2,6 +2,7 @@ class HousesController < ApplicationController
   # before_action :set_contact, only: %i[ show edit update destroy ]
 
   def index
+    @houses = House.all
   end
 
   def new
