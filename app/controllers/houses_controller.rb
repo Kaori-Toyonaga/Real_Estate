@@ -1,15 +1,15 @@
 class HousesController < ApplicationController
   before_action :set_house, only: [:show, :edit, :update, :destroy]
 
- def top
- end
-
  def index
    @houses = House.all
  end
 
  def new
    @house = House.new
+   2.times do
+     @house.stations.build
+   end
  end
 
  def create
@@ -26,6 +26,7 @@ class HousesController < ApplicationController
  end
 
  def show
+   @house.stations.build
  end
 
  def edit
@@ -44,14 +45,24 @@ class HousesController < ApplicationController
    redirect_to houses_path, notice:"物件情報を削除しました。"
  end
 
- def confirm
-   @house = current_user.houses.build(house_params)
-   render :new if @house.invalid?
- end
-
  private
  def house_params
-   params.require(:house).permit(:title, :rent_fee, :address, :age, :remark)
+   params.require(:house).permit(
+     :title,
+     :rent_fee,
+     :address,
+     :age,
+     :remark,
+
+     stations_attributes: [
+       :route,
+       :station,
+       :minute,
+       :house_id,
+       :id,
+       :_destroy,
+      ]
+   )
  end
 
  def set_house

@@ -1,4 +1,3 @@
 class Station < ApplicationRecord
-  has_many :nearest_stations, dependent: :destroy
-  has_many :nearest_station_houses, through: :nearest_stations, source: :house
+  belongs_to :house, inverse_of: :stations
 end
