@@ -5,7 +5,7 @@ class CreateHouses < ActiveRecord::Migration[5.2]
       t.integer :rent_fee
       t.text :address
       t.integer :age
-      t.text :remar      
+      t.text :remark
     end
   end
 end
