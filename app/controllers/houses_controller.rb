@@ -30,6 +30,7 @@ class HousesController < ApplicationController
  end
 
  def edit
+   @house.stations.build
  end
 
  def update
