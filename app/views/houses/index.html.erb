@@ -1,0 +1,26 @@
+<h1>物件一覧</h1>
+<p><%= notice %></p>
+
+<table class="index">
+  <tr>
+    <th class="short_text">物件名</th>
+    <th class="short_text">賃料</th>
+    <th>住所</th>
+    <th>築年数</th>
+    <th>備考</th>
+  </tr>
+  <tr>
+  <% @houses.each do |house| %>
+    <td><%= house.title %></td>
+    <td class="right_text"><%= house.rent_fee %>円</td>
+    <td><%= house.address %></td>
+    <td class="right_text"><%= house.age %>年</td>
+    <td><%= house.remark %></td>
+    <td><%= link_to '詳細', house_path(house.id) %></td>
+    <td><%= link_to '編集', edit_house_path(house.id) %></td>
+    <td><%= link_to '削除', house_path(house.id), method: :delete,data: { confirm: '削除しますか？' } %></td>
+　</tr>
+ <% end %>
+</table>
+
+<p><%= link_to '物件を登録する', new_house_path %><p>
